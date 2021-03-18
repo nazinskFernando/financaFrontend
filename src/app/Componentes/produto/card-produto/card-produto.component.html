@@ -1,0 +1,29 @@
+<div class="card" style="width: 100%">
+  <img
+    class="card-img-top"
+    src="{{ this.produto.imagem }}"
+    width="100px"
+    height="150px"
+    alt="Card image cap"
+  />
+  <div class="card-body">
+    <hr />
+    <h3 class="card-title">
+      <strong>{{ produto.nome }}</strong>
+    </h3>
+    <br />
+    <p style="float: right">{{ produto.valor | currency: "R$":true }}</p>
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+    <button type="button" class="btn btn-danger" (click)="remover()">
+      Remover
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      [routerLink]="'/form-produto/' + produto.id"
+    >
+      Editar
+    </button>
+  </div>
+</div>

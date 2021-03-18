@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: false,
+  BASE_URL: "https://newsgaapi.recode.org.br/api/",
 };

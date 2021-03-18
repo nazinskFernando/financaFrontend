@@ -1,0 +1,136 @@
+<div class="corpo container card">
+  <img
+    class="mb-4 container"
+    src="../../assets/img/ifood-logo.png"
+    alt=""
+    width="100"
+  />
+  <hr />
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="login" *ngIf="!mostrarEsqueciSenha">
+      <label for="login" class="sr-only">Login</label>
+      <input
+        type="text"
+        id="login"
+        class="form-control"
+        placeholder="Digite seu e-mail"
+        name="username"
+        required
+        formControlName="login"
+      /><br />
+      <label for="senha" class="sr-only">Senha</label>
+      <div class="row">
+        <div class="col-11">
+          <input
+            [ngClass]="{
+              'is-invalid':
+                loginForm.get('senha').errors && loginForm.get('senha').touched
+            }"
+            *ngIf="!mostrar"
+            id="senha"
+            type="password"
+            class="form-control"
+            placeholder="Digite sua senha"
+            required
+            formControlName="senha"
+          />
+          <div
+            *ngIf="
+              loginForm.get('senha').hasError('minlength') &&
+              loginForm.get('senha').touched
+            "
+            class="invalid-feedback"
+          >
+            Mínimo 6 caracteres.
+          </div>
+
+          <div
+            *ngIf="
+              loginForm.get('senha').hasError('required') &&
+              loginForm.get('senha').touched
+            "
+            class="invalid-feedback"
+          >
+            Senha é obrigatório.
+          </div>
+        </div>
+        <div>
+          <mat-icon
+            *ngIf="!mostrar"
+            id="olho_senha"
+            class="olho_senha"
+            aria-hidden="false"
+            aria-label="Example visibility_off icon"
+            (click)="mostrarSenha()"
+            >visibility_off</mat-icon
+          >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-11">
+          <input
+            [ngClass]="{
+              'is-invalid':
+                loginForm.get('senha').errors && loginForm.get('senha').touched
+            }"
+            *ngIf="mostrar"
+            id="senha"
+            type="text"
+            class="form-control"
+            placeholder="Senha"
+            required
+            formControlName="senha"
+          />
+          <div
+            *ngIf="loginForm.get('senha').hasError('pattern')"
+            class="invalid-feedback"
+          >
+            Senha deve conter:
+            <li>Letra minúscula</li>
+            <li>Números</li>
+            <li>Mínimo 8 caracteres</li>
+          </div>
+          <div
+            *ngIf="
+              loginForm.get('senha').hasError('required') &&
+              loginForm.get('senha').touched
+            "
+            class="invalid-feedback"
+          >
+            Senha é obrigatório.
+          </div>
+        </div>
+        <div>
+          <mat-icon
+            *ngIf="mostrar"
+            id="olho_senha"
+            class="olho_senha"
+            aria-hidden="false"
+            aria-label="Example visibility icon"
+            (click)="mostrarSenha()"
+            >visibility</mat-icon
+          >
+        </div>
+      </div>
+      <br />
+
+      <button
+        [disabled]="!loginForm.valid || carregamento"
+        class="btn-lg btn-block btn-primary"
+        disabled
+        style="background-color: #4e73df; color: white"
+        type="submit"
+      >
+        Entrar &nbsp;
+        <span
+          *ngIf="carregamento"
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
+      </button>
+    </div>
+  </form>
+</div>

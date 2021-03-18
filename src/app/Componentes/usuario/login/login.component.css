@@ -1,0 +1,62 @@
+.corpo {
+  background-color: white;
+  padding: 50px;
+  width: 500px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+.esqueceu-senha {
+}
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: white;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .olho_senha {
+    margin-top: 5px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (min-width: 993px) {
+  .olho_senha {
+    margin-top: 5px;
+    cursor: pointer;
+  }
+}
+.was-validated .form-control:invalid ~ .invalid-feedback,
+.was-validated .form-control:invalid ~ .invalid-tooltip,
+.form-control.is-invalid ~ .invalid-feedback,
+.form-control.is-invalid ~ .invalid-tooltip {
+  text-align: left;
+}
+.spinner-border {
+  margin-top: -10px;
+}
