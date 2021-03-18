@@ -1,0 +1,29 @@
+<div class="notificacoes container">
+  <button
+    type="button"
+    (click)="defineTipo(0)"
+    class="btn btn-primary btn-notificacao"
+  >
+    Total entrada: <span class="badge bg-secondary">4</span>
+  </button>
+  <br />
+
+  <button
+    type="button"
+    (click)="defineTipo(1)"
+    class="btn btn-danger btn-notificacao"
+  >
+    Total Sída: <span class="badge bg-secondary">4</span>
+  </button>
+  <br />
+
+  <button type="button" class="btn btn-success btn-notificacao">
+    Sobra: <span class="badge bg-secondary">4</span>
+  </button>
+</div>
+<div class="card">
+  <div class="card-body">
+    <app-list-entrada *ngIf="tipoTransacao == 0"></app-list-entrada>
+    <app-list-saida *ngIf="tipoTransacao == 1"></app-list-saida>
+  </div>
+</div>
