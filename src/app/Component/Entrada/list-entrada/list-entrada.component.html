@@ -1,6 +1,10 @@
-<app-form-entrada></app-form-entrada>
+<app-form-entrada
+  (salvou)="atualizar()"
+  [mesReferenciaId]="mesReferenciaId"
+></app-form-entrada>
+<br />
 <app-card-entrada
+  (atualizou)="atualizar()"
   [entrada]="entrada"
   *ngFor="let entrada of entradas"
 ></app-card-entrada>
-lista-Entrada

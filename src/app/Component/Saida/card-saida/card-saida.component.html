@@ -1,3 +1,48 @@
-<p>
-  card-saida works!
-</p>
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-8">
+        <strong>{{ saida.nome }}</strong>
+      </div>
+      <div class="col-4">
+        <p class="card-text">{{ saida.valor | currency: "R$" }}</p>
+      </div>
+    </div>
+    <p class="card-text">
+      <small class="text-muted">{{ saida.descricao }}</small>
+    </p>
+    <div class="row">
+      <div class="col-3">
+        <span *ngIf="saida.isPago" class="badge bg-success">Pago</span>
+        <span *ngIf="!saida.isPago" class="badge bg-primary">Não pago</span>
+      </div>
+      <div class="col-3">
+        <span *ngIf="saida.isFixa" class="badge bg-secondary">Fixo</span>
+      </div>
+      <div class="col-6">
+        <span class="badge bg-secondary" *ngIf="saida.parcelas != 0">
+          Parcelas <span class="badge bg-secondary">{{ saida.parcelas }}</span>
+        </span>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-6">
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="confirmarDelecao()"
+        >
+          Apagar
+        </button>
+      </div>
+      <div class="col-6">
+        <app-form-saida
+          [isEdicao]="saida"
+          (salvou)="atualizar()"
+          [mesReferenciaId]="saida.mesReferenciaId"
+        ></app-form-saida>
+      </div>
+    </div>
+  </div>
+</div>

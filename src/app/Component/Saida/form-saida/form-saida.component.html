@@ -1,6 +1,6 @@
 <ng-template #content let-c="close" let-d="dismiss">
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+    <h4 class="modal-title" id="modal-basic-title">Cadastrar saída</h4>
     <button
       type="button"
       class="close"
@@ -11,23 +11,150 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Hello, World!</p>
+    <div>
+      <form [formGroup]="formulario" style="margin-bottom: 20px">
+        <div class="row">
+          <div
+            class="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+          >
+            <div class="form-group">
+              <label for=""> Nome:</label>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="nome"
+                placeholder="Digite o nome"
+                [ngClass]="{
+                  'is-invalid':
+                    formulario.get('nome').errors &&
+                    formulario.get('nome').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  formulario.get('nome').hasError('required') &&
+                  formulario.get('nome').touched
+                "
+                class="invalid-feedback"
+              >
+                Nome é obrigatório.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="form-group required">
+              <label for="">Valor:</label>
+              <input
+                type="number"
+                placeholder="0"
+                class="form-control"
+                mask="(00) 00000-0000"
+                formControlName="valor"
+                [ngClass]="{
+                  'is-invalid':
+                    formulario.get('valor').errors &&
+                    formulario.get('valor').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  formulario.get('valor').hasError('required') &&
+                  formulario.get('valor').touched
+                "
+                class="invalid-feedback"
+              >
+                Valor é obrigatório.
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="form-group required">
+              <label for="">Parcelas:</label>
+              <input
+                type="number"
+                placeholder="0"
+                class="form-control"
+                mask="(00) 00000-0000"
+                formControlName="parcelas"
+                [ngClass]="{
+                  'is-invalid':
+                    formulario.get('parcelas').errors &&
+                    formulario.get('parcelas').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  formulario.get('parcelas').hasError('required') &&
+                  formulario.get('parcelas').touched
+                "
+                class="invalid-feedback"
+              >
+                parcelas é obrigatório.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <input
+              formControlName="isPago"
+              type="checkbox"
+              id="scales"
+              name="scales"
+              checked
+            />
+            <label for="scales">Está pago?</label>
+          </div>
+
+          <div
+            *ngIf="!isEdicao"
+            class="form-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
+          >
+            <input
+              formControlName="isFixa"
+              type="checkbox"
+              id="horns"
+              name="horns"
+            />
+            <label for="horns">Valor fixo?</label>
+          </div>
+        </div>
+
+        <label>Descrição:</label><br />
+        <textarea
+          style="width: 100%"
+          rows="3"
+          cols="33"
+          formControlName="descricao"
+        ></textarea>
+      </form>
+    </div>
   </div>
   <div class="modal-footer">
-    <button
-      type="button"
-      class="btn btn-outline-dark"
-      (click)="c('Save click')"
-    >
+    <button type="button" class="btn btn-outline-dark" (click)="salvar()">
       Save
     </button>
   </div>
 </ng-template>
 <button
+  *ngIf="!isEdicao"
   style="float: right"
   type="button"
-  class="btn btn-success rounded-circle"
+  class="btn btn-danger rounded-circle"
   (click)="open(content)"
 >
   +
 </button>
+<button
+  *ngIf="isEdicao"
+  (click)="open(content)"
+  style="width: 100px"
+  type="button"
+  class="btn btn-primary btn-sm"
+>
+  Editar
+</button>
+<br />
