@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Saida } from 'src/app/Models/Saida';
-import { TransacaoService } from 'src/app/Services/transacao.service';
+import { SaidaService } from 'src/app/Services/saida.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 export class CardSaidaComponent implements OnInit {
   @Input() saida: Saida;
   @Output() atualizou = new EventEmitter<boolean>();
-  constructor(private transacaoService: TransacaoService) {}
+  constructor(private saidaService: SaidaService) {}
 
   ngOnInit() {}
 
@@ -33,7 +33,7 @@ export class CardSaidaComponent implements OnInit {
     this.atualizou.emit(true);
   }
   apagar() {
-    this.transacaoService.deletar(this.saida.id).subscribe(
+    this.saidaService.deletar(this.saida.id).subscribe(
       () => {
         this.atualizou.emit(true);
       },

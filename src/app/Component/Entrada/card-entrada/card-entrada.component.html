@@ -5,7 +5,7 @@
         <strong>{{ entrada.nome }}</strong>
       </div>
       <div class="col-4">
-        <p class="card-text">{{ entrada.valor | currency: "R$" }}</p>
+        <p class="card-text">{{ entrada.valor }}</p>
       </div>
     </div>
     <p class="card-text">
@@ -38,11 +38,11 @@
         </button>
       </div>
       <div class="col-6">
-        <app-form-entrada
+        <!-- <app-form-entrada
           [isEdicao]="entrada"
           (salvou)="atualizar()"
           [mesReferenciaId]="entrada.mesReferenciaId"
-        ></app-form-entrada>
+        ></app-form-entrada> -->
       </div>
     </div>
   </div>

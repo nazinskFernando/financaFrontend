@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TipoOperacao } from 'src/app/Models/Enum/TipoOperacao.enum';
 import { MesReferencia } from 'src/app/Models/MesReferencia';
 import { Saida } from 'src/app/Models/Saida';
-import { TransacaoService } from 'src/app/Services/transacao.service';
+import { SaidaService } from 'src/app/Services/saida.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -13,9 +12,10 @@ import Swal from 'sweetalert2';
 export class ListSaidaComponent implements OnInit {
   @Input() mesReferenciaId: string;
   @Output() atualizou = new EventEmitter<boolean>();
+  @Output() totalSaida = new EventEmitter<number>();
   saidas = new Array<Saida>();
 
-  constructor(private transacaoService: TransacaoService) {}
+  constructor(private saidaService: SaidaService) {}
 
   ngOnInit() {}
   ngOnChanges() {
@@ -30,19 +30,22 @@ export class ListSaidaComponent implements OnInit {
 
   buscarSaida() {
     console.log('this.mesReferenciaId saida', this.mesReferenciaId);
-    this.transacaoService
-      .buscarTransacoes(this.mesReferenciaId, TipoOperacao.Saida)
-      .subscribe(
-        (saidas: Saida[]) => {
-          this.saidas = saidas;
-        },
-        (error) => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: error.error,
-          });
-        }
-      );
+    this.saidaService.buscarPorMesReferencia(this.mesReferenciaId).subscribe(
+      (saidas: Saida[]) => {
+        this.saidas = saidas;
+        var total = 0;
+        this.saidas.forEach((e) => {
+          total += e.valor;
+        });
+        this.totalSaida.emit(total);
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.error,
+        });
+      }
+    );
   }
 }

@@ -5,10 +5,9 @@ import {
   NgbModal,
   NgbModalRef,
 } from '@ng-bootstrap/ng-bootstrap';
-import { TipoOperacao } from 'src/app/Models/Enum/TipoOperacao.enum';
 import { Saida } from 'src/app/Models/Saida';
+import { SaidaService } from 'src/app/Services/saida.service';
 import Swal from 'sweetalert2';
-import { TransacaoService } from 'src/app/Services/transacao.service';
 
 @Component({
   selector: 'app-form-saida',
@@ -26,7 +25,7 @@ export class FormSaidaComponent implements OnInit {
     config: NgbModalConfig,
     private modalService: NgbModal,
     public fb: FormBuilder,
-    private transacaoService: TransacaoService
+    private saidaService: SaidaService
   ) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
@@ -73,7 +72,6 @@ export class FormSaidaComponent implements OnInit {
     saida.parcelas = this.formulario.controls['parcelas'].value
       ? this.formulario.controls['parcelas'].value
       : 0;
-    saida.tipoOperacao = TipoOperacao.Saida;
     saida.mesReferenciaId = this.mesReferenciaId;
     if (this.isEdicao) {
       saida.id = this.isEdicao.id;
@@ -82,7 +80,7 @@ export class FormSaidaComponent implements OnInit {
   }
 
   editar() {
-    this.transacaoService.alterar(this.preemcherForm()).subscribe(
+    this.saidaService.alterar(this.preemcherForm()).subscribe(
       () => {
         this.salvou.emit(true);
         this.modalReference.close();
@@ -101,7 +99,7 @@ export class FormSaidaComponent implements OnInit {
       this.editar();
     } else {
       // console.log('saida', this.preemcherForm());
-      this.transacaoService.salvar(this.preemcherForm()).subscribe(
+      this.saidaService.salvar(this.preemcherForm()).subscribe(
         () => {
           this.salvou.emit(true);
           this.modalReference.close();

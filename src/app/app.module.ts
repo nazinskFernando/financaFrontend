@@ -1,9 +1,12 @@
+import { HomeComponent } from './Pages/home/home.component';
+import { PoupancaComponent } from './Pages/poupanca/poupanca.component';
+import { PlanejamentoComponent } from './Pages/planejamento/planejamento.component';
+import { ContaComponent } from './Pages/conta/conta.component';
 import { FormSaidaComponent } from './Component/Saida/form-saida/form-saida.component';
 import { FormEntradaComponent } from './Component/Entrada/form-entrada/form-entrada.component';
 import { ListEntradaComponent } from './Component/Entrada/list-entrada/list-entrada.component';
 import { ListSaidaComponent } from './Component/Saida/list-saida/list-saida.component';
 import { CardSaidaComponent } from './Component/Saida/card-saida/card-saida.component';
-import { ExtratoComponent } from './Pages/extrato/extrato.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
@@ -20,13 +23,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    ExtratoComponent,
     CardEntradaComponent,
     CardSaidaComponent,
     ListSaidaComponent,
     ListEntradaComponent,
     FormEntradaComponent,
     FormSaidaComponent,
+    ContaComponent,
+    PlanejamentoComponent,
+    PoupancaComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

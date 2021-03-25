@@ -1,6 +1,15 @@
 import { TipoOperacaoSaida } from './Enum/TipoOperacaoSaida.enum';
-import { Transacao } from './Transacao';
 
-export class Saida extends Transacao {
+export class Saida {
+  id: string;
+  nome: string;
+  valor: number;
+  descricao: string;
+  parcelas: number;
+  isPago: boolean;
+  isFixa: boolean;
+  IsFixId: string;
+  mesReferenciaId: string;
+  poupancaId: string;
   tipoOperacaoSaida: TipoOperacaoSaida;
 }

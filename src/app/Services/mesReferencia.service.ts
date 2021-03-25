@@ -5,7 +5,6 @@ import { Constants } from '../Util/Constants';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { TipoOperacao } from '../Models/Enum/TipoOperacao.enum';
 
 @Injectable({
   providedIn: 'root',

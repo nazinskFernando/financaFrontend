@@ -1,16 +1,17 @@
-import { ExtratoComponent } from './Pages/extrato/extrato.component';
+import { HomeComponent } from './Pages/home/home.component';
+import { ContaComponent } from './Pages/conta/conta.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/extrato',
+    redirectTo: '/home',
     pathMatch: 'full',
   },
-  { path: 'extrato', component: ExtratoComponent },
-  { path: '', redirectTo: '/extrato', pathMatch: 'full' },
-  { path: '**', redirectTo: '/extrato', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({

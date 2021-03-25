@@ -1,0 +1,47 @@
+<div class="container">
+  <div
+    class="btn-group box"
+    role="group"
+    aria-label="Basic radio toggle button group"
+  >
+    <input
+      (change)="aplicado(1)"
+      type="radio"
+      class="btn-check"
+      name="btnradio"
+      id="btnradio1"
+      autocomplete="off"
+      checked
+    />
+    <label class="btn btn-outline-primary" for="btnradio1">Conta</label>
+
+    <input
+      (change)="aplicado(2)"
+      type="radio"
+      class="btn-check"
+      name="btnradio"
+      id="btnradio2"
+      autocomplete="off"
+    />
+    <label class="btn btn-outline-primary" for="btnradio2">Poupança</label>
+
+    <input
+      (change)="aplicado(3)"
+      type="radio"
+      class="btn-check"
+      name="btnradio"
+      id="btnradio3"
+      autocomplete="off"
+    />
+    <label class="btn btn-outline-primary" for="btnradio3">Planejamento</label>
+  </div>
+</div>
+<div *ngIf="abaAtual == 1" class="conta">
+  <app-conta></app-conta>
+</div>
+<div *ngIf="abaAtual == 2" class="poupanca">
+  <app-poupanca></app-poupanca>
+</div>
+<div *ngIf="abaAtual == 3" class="planejamento">
+  <app-planejamento></app-planejamento>
+</div>

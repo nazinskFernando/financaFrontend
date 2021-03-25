@@ -1,5 +1,4 @@
 import { Entrada } from './../../../Models/Entrada';
-import { TransacaoService } from 'src/app/Services/transacao.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
@@ -9,7 +8,7 @@ import {
   NgbModalRef,
 } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2';
-import { TipoOperacao } from 'src/app/Models/Enum/TipoOperacao.enum';
+import { EntradaService } from 'src/app/Services/entrada.service';
 
 @Component({
   selector: 'app-form-entrada',
@@ -26,7 +25,7 @@ export class FormEntradaComponent implements OnInit {
     config: NgbModalConfig,
     private modalService: NgbModal,
     public fb: FormBuilder,
-    private transacaoService: TransacaoService
+    private entradaService: EntradaService
   ) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
@@ -73,7 +72,6 @@ export class FormEntradaComponent implements OnInit {
     entrada.parcelas = this.formulario.controls['parcelas'].value
       ? this.formulario.controls['parcelas'].value
       : 0;
-    entrada.tipoOperacao = TipoOperacao.Entrada;
     entrada.mesReferenciaId = this.mesReferenciaId;
     if (this.isEdicao) {
       entrada.id = this.isEdicao.id;
@@ -82,7 +80,7 @@ export class FormEntradaComponent implements OnInit {
   }
 
   editar() {
-    this.transacaoService.alterar(this.preemcherForm()).subscribe(
+    this.entradaService.alterar(this.preemcherForm()).subscribe(
       () => {
         this.salvou.emit(true);
         this.modalReference.close();
@@ -101,7 +99,7 @@ export class FormEntradaComponent implements OnInit {
     if (this.isEdicao) {
       this.editar();
     } else {
-      this.transacaoService.salvar(this.preemcherForm()).subscribe(
+      this.entradaService.salvar(this.preemcherForm()).subscribe(
         () => {
           this.salvou.emit(true);
           this.modalReference.close();

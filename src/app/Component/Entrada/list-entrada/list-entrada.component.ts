@@ -1,4 +1,4 @@
-import { TransacaoService } from './../../../Services/transacao.service';
+import { EntradaService } from './../../../Services/entrada.service';
 import {
   Component,
   EventEmitter,
@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 import { Entrada } from 'src/app/Models/Entrada';
 import { MesReferencia } from 'src/app/Models/MesReferencia';
-import { TipoOperacao } from 'src/app/Models/Enum/TipoOperacao.enum';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -20,13 +19,14 @@ import Swal from 'sweetalert2';
 export class ListEntradaComponent implements OnInit, OnChanges {
   @Input() mesReferenciaId: string;
   @Output() atualizou = new EventEmitter<boolean>();
+  @Output() totalEntrada = new EventEmitter<number>();
   entradas = new Array<Entrada>();
 
-  constructor(private transacaoService: TransacaoService) {}
+  constructor(private entradaService: EntradaService) {}
 
   ngOnInit() {}
   ngOnChanges() {
-    this.mesReferenciaId;
+    console.log('mese', this.mesReferenciaId);
     this.buscarEntrada();
   }
 
@@ -37,19 +37,22 @@ export class ListEntradaComponent implements OnInit, OnChanges {
 
   buscarEntrada() {
     console.log('entrou', this.mesReferenciaId);
-    this.transacaoService
-      .buscarTransacoes(this.mesReferenciaId, TipoOperacao.Entrada)
-      .subscribe(
-        (entradas: Entrada[]) => {
-          this.entradas = entradas;
-        },
-        (error) => {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: error.error,
-          });
-        }
-      );
+    this.entradaService.buscarPorMesReferencia(this.mesReferenciaId).subscribe(
+      (entradas: Entrada[]) => {
+        this.entradas = entradas;
+        var total = 0;
+        this.entradas.forEach((e) => {
+          total += e.valor;
+        });
+        this.totalEntrada.emit(total);
+      },
+      (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.error,
+        });
+      }
+    );
   }
 }
