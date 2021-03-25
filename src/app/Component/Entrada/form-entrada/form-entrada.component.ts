@@ -76,6 +76,7 @@ export class FormEntradaComponent implements OnInit {
     if (this.isEdicao) {
       entrada.id = this.isEdicao.id;
     }
+
     return entrada;
   }
 

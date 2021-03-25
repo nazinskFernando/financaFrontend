@@ -1,10 +1,14 @@
-<!-- <app-form-saida
-  (salvou)="atualizar()"
-  [mesReferenciaId]="mesReferenciaId"
-></app-form-saida -->
-<br />
-<app-card-saida
-  (atualizou)="atualizar()"
-  [saida]="saida"
-  *ngFor="let saida of saidas"
-></app-card-saida>
+<div class="card">
+  <h3 style="text-align: center">
+    Saidas
+    <app-form-saida
+      (salvou)="atualizar()"
+      [mesReferenciaId]="mesReferenciaId"
+    ></app-form-saida>
+  </h3>
+  <app-card-saida
+    (atualizou)="atualizar()"
+    [saida]="saida"
+    *ngFor="let saida of saidas"
+  ></app-card-saida>
+</div>

@@ -1,10 +1,14 @@
-<!-- <app-form-entrada
-  (salvou)="atualizar()"
-  [mesReferenciaId]="mesReferenciaId"
-></app-form-entrada> -->
-<br />
-<app-card-entrada
-  (atualizou)="atualizar()"
-  [entrada]="entrada"
-  *ngFor="let entrada of entradas"
-></app-card-entrada>
+<div class="card">
+  <h3 style="text-align: center">
+    Entregas
+    <app-form-entrada
+      (salvou)="atualizar()"
+      [mesReferenciaId]="mesReferenciaId"
+    ></app-form-entrada>
+  </h3>
+  <app-card-entrada
+    (atualizou)="atualizar()"
+    [entrada]="entrada"
+    *ngFor="let entrada of entradas"
+  ></app-card-entrada>
+</div>

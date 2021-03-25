@@ -76,6 +76,7 @@ export class FormSaidaComponent implements OnInit {
     if (this.isEdicao) {
       saida.id = this.isEdicao.id;
     }
+
     return saida;
   }
 

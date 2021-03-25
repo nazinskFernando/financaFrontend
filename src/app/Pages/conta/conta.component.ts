@@ -14,6 +14,7 @@ export class ContaComponent implements OnInit {
   totalEntrada: number;
   totalSaida: number;
   total: number = 0;
+  selecionaMesAtual: boolean = true;
   tipoSelecao: number = 2;
   mesesReferencia = new Array<MesReferencia>();
   mesAtual = new MesReferencia();
@@ -39,9 +40,13 @@ export class ContaComponent implements OnInit {
   }
 
   selecionarMesAno() {
-    this.mesAtual.id = this.formulario.controls['mesAno'].value;
+    var selecionado = this.formulario.controls['mesAno'].value;
+    this.mesesReferencia.forEach((m) => {
+      if (m.id == selecionado) {
+        this.mesAtual = m;
+      }
+    });
     this.tipoSelecao = 2;
-    console.log('teste', this.mesAtual);
   }
 
   buscarMesesRferencia() {
