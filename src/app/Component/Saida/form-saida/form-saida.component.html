@@ -43,6 +43,65 @@
           </div>
         </div>
         <div class="row">
+          <div
+            class="form-group col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
+          >
+            <label>Tipo operação</label>
+            <select
+              formControlName="tipoOperacaoSaida"
+              (change)="selecionarTipoOperacao()"
+              class="form-select"
+            >
+              <!-- <option *ngFor="let c of mesesReferencia" [ngValue]="c.id">
+                {{ c.mes }}/{{ c.ano }}
+              </option> -->
+              <option [ngValue]="'1'">Porcentagem</option>
+              <option [ngValue]="'2'">Comum</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="mostrarEntradas">
+          <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="form-group required">
+              <label for="">Porcentage:</label>
+              <input
+                (change)="calcularPorcentagem()"
+                type="number"
+                placeholder="0"
+                class="form-control"
+                formControlName="porcentagem"
+                [ngClass]="{
+                  'is-invalid':
+                    formulario.get('porcentagem').errors &&
+                    formulario.get('porcentagem').touched
+                }"
+              />
+              <div
+                *ngIf="
+                  formulario.get('porcentagem').hasError('required') &&
+                  formulario.get('porcentagem').touched
+                "
+                class="invalid-feedback"
+              >
+                porcentagem é obrigatório.
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <label>Entrada referênte</label>
+            <select
+              (change)="calcularPorcentagem()"
+              formControlName="entradaId"
+              class="form-select"
+            >
+              <option *ngFor="let c of entradas" [ngValue]="c.id">
+                {{ c.nome }}({{ c.valor }})
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
           <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <div class="form-group required">
               <label for="">Valor:</label>
@@ -97,6 +156,7 @@
             </div>
           </div>
         </div>
+
         <div class="row">
           <div class="form-group col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <input

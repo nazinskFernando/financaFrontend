@@ -22,7 +22,7 @@
         <span *ngIf="saida.isFixa" class="badge bg-secondary">Fixo</span>
       </div>
       <div class="col-6">
-        <span class="badge bg-secondary" *ngIf="saida.parcelas != 0">
+        <span class="badge bg-secondary" *ngIf="saida.parcelas != null">
           Parcelas <span class="badge bg-secondary">{{ saida.parcelas }}</span>
         </span>
       </div>

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Entrada } from 'src/app/Models/Entrada';
 import { MesReferencia } from 'src/app/Models/MesReferencia';
 import { Saida } from 'src/app/Models/Saida';
+import { EntradaService } from 'src/app/Services/entrada.service';
 import { SaidaService } from 'src/app/Services/saida.service';
 import Swal from 'sweetalert2';
 
@@ -15,7 +17,10 @@ export class ListSaidaComponent implements OnInit {
   @Output() totalSaida = new EventEmitter<number>();
   saidas = new Array<Saida>();
 
-  constructor(private saidaService: SaidaService) {}
+  constructor(
+    private saidaService: SaidaService,
+    private entradaService: EntradaService
+  ) {}
 
   ngOnInit() {}
   ngOnChanges() {
@@ -37,6 +42,7 @@ export class ListSaidaComponent implements OnInit {
         this.saidas.forEach((e) => {
           total += e.valor;
         });
+
         this.totalSaida.emit(total);
       },
       (error) => {

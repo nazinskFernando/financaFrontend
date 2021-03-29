@@ -1,0 +1,29 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-8">
+        <strong>{{ poupanca.nome }}</strong>
+      </div>
+    </div>
+
+    <hr />
+    <div class="row">
+      <div class="col-6">
+        <button
+          type="button"
+          class="btn btn-danger btn-sm"
+          (click)="confirmarDelecao()"
+        >
+          Apagar
+        </button>
+      </div>
+      <div class="col-6">
+        <!-- <app-form-entrada
+          [isEdicao]="entrada"
+          (salvou)="atualizar()"
+          [mesReferenciaId]="entrada.mesReferenciaId"
+        ></app-form-entrada> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,6 @@
+import { FormPoupancaComponent } from './Component/poupanca/form-poupanca/form-poupanca.component';
+import { ListPoupancaComponent } from './Component/poupanca/list-poupanca/list-poupanca.component';
+import { CardPoupancaComponent } from './Component/poupanca/card-poupanca/card-poupanca.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { PoupancaComponent } from './Pages/poupanca/poupanca.component';
 import { PlanejamentoComponent } from './Pages/planejamento/planejamento.component';
@@ -33,6 +36,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PlanejamentoComponent,
     PoupancaComponent,
     HomeComponent,
+    CardPoupancaComponent,
+    ListPoupancaComponent,
+    FormPoupancaComponent,
   ],
   imports: [
     BrowserModule,

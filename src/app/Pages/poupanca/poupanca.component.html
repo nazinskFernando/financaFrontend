@@ -1,3 +1,50 @@
-<p>
-  poupanca works!
-</p>
+<div class="container">
+  <form [formGroup]="formulario">
+    <label>Mês referencia</label>
+    <select
+      formControlName="mesAno"
+      (change)="selecionarMesAno()"
+      class="form-select"
+    >
+      <option *ngFor="let c of mesesReferencia" [ngValue]="c.id">
+        {{ c.mes }}/{{ c.ano }}
+      </option>
+    </select>
+  </form>
+  <div *ngIf="mostrarConteudo">
+    <div class="card card-total">
+      <h3 class="total" style="color: white">
+        Total:
+        <span class="badge bg-danger" *ngIf="total < 0">{{
+          total | currency: "BRL":true
+        }}</span>
+        <span class="badge bg-success" *ngIf="total > 0">{{
+          total | currency: "BRL":true
+        }}</span>
+      </h3>
+    </div>
+    <div class="row resumo">
+      <div class="col-6">
+        <div
+          class="card resumo-entrada"
+          (click)="selecionarLista(0)"
+          style="float: right; cursor: pointer"
+        >
+          <strong style="text-align: center">Entrada</strong>
+          <p class="valor-resumo">{{ totalEntrada | currency: "BRL":true }}</p>
+        </div>
+      </div>
+      <div class="col-6">
+        <div
+          class="card resumo-saida"
+          (click)="selecionarLista(1)"
+          style="cursor: pointer"
+        >
+          <strong style="text-align: center">Saída</strong>
+          <p class="valor-resumo">{{ totalSaida | currency: "BRL":true }}</p>
+        </div>
+      </div>
+    </div>
+    <app-list-poupanca [poupancas]="poupancas"></app-list-poupanca>
+  </div>
+</div>

@@ -27,14 +27,15 @@ export class SaidaService {
     );
   }
 
-  salvar(Saida: Saida): Observable<Saida> {
-    return this.http.post<Saida>(`${this.baseURL}`, Saida);
+  salvar(saida: Saida): Observable<Saida> {
+    console.log('valor na saida', saida);
+    return this.http.post<Saida>(`${this.baseURL}`, saida);
   }
 
   alterar(Saida: Saida): Observable<Saida> {
     return this.http.put<Saida>(`${this.baseURL}`, Saida);
   }
-  deletar(id: string): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.baseURL}/${id}`);
+  deletar(id: string, deleteAll: boolean = false): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.baseURL}/${id}/${deleteAll}`);
   }
 }

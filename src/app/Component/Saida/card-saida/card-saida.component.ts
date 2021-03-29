@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Entrada } from 'src/app/Models/Entrada';
+import { TipoOperacaoSaida } from 'src/app/Models/Enum/TipoOperacaoSaida.enum';
 import { Saida } from 'src/app/Models/Saida';
+import { EntradaService } from 'src/app/Services/entrada.service';
 import { SaidaService } from 'src/app/Services/saida.service';
 import Swal from 'sweetalert2';
 
@@ -11,7 +14,10 @@ import Swal from 'sweetalert2';
 export class CardSaidaComponent implements OnInit {
   @Input() saida: Saida;
   @Output() atualizou = new EventEmitter<boolean>();
-  constructor(private saidaService: SaidaService) {}
+  constructor(
+    private saidaService: SaidaService,
+    private entradaService: EntradaService
+  ) {}
 
   ngOnInit() {}
 

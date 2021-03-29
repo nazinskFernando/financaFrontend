@@ -5,11 +5,13 @@ export class Saida {
   nome: string;
   valor: number;
   descricao: string;
-  parcelas: number;
+  parcelas: string;
   isPago: boolean;
   isFixa: boolean;
   IsFixId: string;
   mesReferenciaId: string;
   poupancaId: string;
+  entradaId: string;
+  porcentagem: number;
   tipoOperacaoSaida: TipoOperacaoSaida;
 }
