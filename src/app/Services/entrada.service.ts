@@ -35,7 +35,7 @@ export class EntradaService {
   alterar(Entrada: Entrada): Observable<Entrada> {
     return this.http.put<Entrada>(`${this.baseURL}`, Entrada);
   }
-  deletar(id: string): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.baseURL}/${id}`);
+  deletar(id: string, deleteAll: boolean = false): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.baseURL}/${id}/${deleteAll}`);
   }
 }
